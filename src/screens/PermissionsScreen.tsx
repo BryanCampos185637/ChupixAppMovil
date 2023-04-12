@@ -1,7 +1,8 @@
 import React, {useContext} from 'react';
-import {Button, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {colorsApp} from '../helpers/colors';
 import {PermissionsContext} from '../context/PermissionsContext';
+import {BlackButton} from '../components';
 
 export const PermissionsScreen = () => {
   const {permissions, askLocationPermission} = useContext(PermissionsContext);
@@ -14,7 +15,7 @@ export const PermissionsScreen = () => {
       <Text style={{color: colorsApp.negro, fontSize: 20, fontWeight: 'bold'}}>
         Estado: {permissions.locationStatus}
       </Text>
-      <Button title="activar gps" onPress={askLocationPermission} />
+      <BlackButton title="ACTIVAR GPS" onPress={askLocationPermission} />
     </View>
   );
 };

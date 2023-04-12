@@ -5,7 +5,7 @@ import {
   PermissionStatus,
   check,
   request,
-  openSettings
+  openSettings,
 } from 'react-native-permissions';
 
 export interface PermissionState {
@@ -43,7 +43,7 @@ export const PermissionsProvider = ({children}: any) => {
       );
     }
 
-    if(permissionStatus==='blocked'){
+    if (permissionStatus === 'blocked') {
       openSettings();
     }
 
