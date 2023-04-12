@@ -1,2 +1,1 @@
-export { IonIcon } from "./IonIcon";
-
+export {IonIcon} from './IonIcon';
