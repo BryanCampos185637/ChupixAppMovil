@@ -4,6 +4,7 @@ import {CarritoCompraScreen, HomeScreen, TiendasScreen} from '../screens';
 const Stack = createStackNavigator();
 
 export const MyStack = () => {
+
   return (
     <Stack.Navigator
     initialRouteName='TiendasScreen'
