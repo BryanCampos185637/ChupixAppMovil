@@ -1,17 +1,39 @@
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {ProductoFavoritoScreen, TiendasScreen} from '../screens';
+import {Container, IonIcon} from '../components';
+import {colors} from '../constans/colors';
 
 const Tab = createMaterialTopTabNavigator();
 
-export const FavoriteTabs = () => {
+const Menu = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor: colors.ligth,
+        },
+      }}>
       <Tab.Screen
         name="ProductoFavoritoScreen"
         component={ProductoFavoritoScreen}
+        options={{
+          tabBarLabel: 'Productos',
+        }}
       />
-      <Tab.Screen name="TiendasScreen" component={TiendasScreen} />
+      <Tab.Screen
+        name="TiendasScreen"
+        component={TiendasScreen}
+        options={{tabBarLabel: 'Tiendas'}}
+      />
     </Tab.Navigator>
+  );
+};
+
+export const FavoriteTabs = () => {
+  return (
+    <Container>
+      <Menu />
+    </Container>
   );
 };

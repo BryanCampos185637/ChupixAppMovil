@@ -1,13 +1,12 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import {Box, Image, Text} from 'native-base';
 import {colors} from '../constans/colors';
 import {StyleSheet} from 'react-native';
 import {IonIcon} from './IonIcon';
+import {getUrlImageRandom} from '../helpers/getUrlImageRandom';
 
 export const CardCarritoCompra = () => {
-
-  const urlImg = useRef('https://picsum.photos/300/300')
   return (
     <Box
       flexDirection={'row'}
@@ -24,7 +23,7 @@ export const CardCarritoCompra = () => {
         <Image
           borderRadius={10}
           source={{
-            uri: urlImg.current,
+            uri: getUrlImageRandom(),
           }}
           alt="Alternate Text"
           size="xl"

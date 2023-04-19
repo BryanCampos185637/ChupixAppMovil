@@ -4,10 +4,9 @@ import {Box, Image, Text} from 'native-base';
 import {colors} from '../constans/colors';
 import {StyleSheet} from 'react-native';
 import {IonIcon} from './IonIcon';
-import {colorsApp} from '../helpers/colors';
+import { getUrlImageRandom } from '../helpers/getUrlImageRandom';
 
 export const CardTienda = () => {
-  const urlImg = useRef('https://picsum.photos/1024/700');
 
   const isFavorite = (): boolean => {
     return Math.floor(Math.random() * 3) % 2 == 0;
@@ -32,7 +31,7 @@ export const CardTienda = () => {
         <Image
           borderRadius={10}
           source={{
-            uri: urlImg.current,
+            uri: getUrlImageRandom(),
           }}
           alt="Alternate Text"
           size="xl"
@@ -43,18 +42,18 @@ export const CardTienda = () => {
           Tienda
         </Text>
         <Text color={colors.black} fontSize={'md'}>
-          <IonIcon size={16} color={colorsApp.negro} name="location" />
+          <IonIcon size={16} color={colors.black} name="location" />
           Direccion Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s
         </Text>
         <Text color={colors.black} fontSize={'md'}>
-          <IonIcon size={16} color={colorsApp.negro} name="call" />
+          <IonIcon size={16} color={colors.black} name="call" />
           +503 70599924
         </Text>
         <Box flexDirection={'row'} justifyContent={'space-between'}>
-          <IonIcon size={16} color={colorsApp.gris} name="logo-facebook" />
-          <IonIcon size={16} color={colorsApp.gris} name="logo-instagram" />
-          <IonIcon size={16} color={colorsApp.gris} name="logo-twitter" />
+          <IonIcon size={16} color={colors.grey} name="logo-facebook" />
+          <IonIcon size={16} color={colors.grey} name="logo-instagram" />
+          <IonIcon size={16} color={colors.grey} name="logo-twitter" />
         </Box>
       </Box>
     </Box>
@@ -63,7 +62,7 @@ export const CardTienda = () => {
 
 const styles = StyleSheet.create({
   container: {
-    shadowColor: '#000',
+    shadowColor: colors.black,
     shadowOffset: {
       width: 0,
       height: 4,

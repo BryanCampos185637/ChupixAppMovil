@@ -2,7 +2,6 @@ import React from 'react';
 import {Box, FlatList, Image, Text, View} from 'native-base';
 import {colors} from '../constans/colors';
 import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
-import {colorsApp} from '../helpers/colors';
 import {direcciones} from '../constans/direcciones';
 import {IonIcon} from '../components';
 
@@ -48,11 +47,11 @@ export const PerfilScreen = () => {
 
           {/* datos personales */}
           <Box
-            backgroundColor={colorsApp.blanco}
+            backgroundColor={colors.white}
             rounded={10}
             padding={5}
             marginTop={5}>
-            <Text fontSize={'3xl'} color={colorsApp.gris} fontWeight={'bold'}>
+            <Text fontSize={'3xl'} color={colors.grey} fontWeight={'bold'}>
               Datos generales
             </Text>
             <Box flexDirection={'row'} justifyContent={'space-between'}>
@@ -60,13 +59,13 @@ export const PerfilScreen = () => {
                 <Text fontSize={'md'} fontWeight={'bold'}>
                   Bryan Campos
                 </Text>
-                <Text color={colorsApp.gris} fontSize={'md'}>
+                <Text color={colors.grey} fontSize={'md'}>
                   Nombre usuario
                 </Text>
                 <Text fontSize={'md'} fontWeight={'bold'} marginTop={1}>
                   +503 70599923
                 </Text>
-                <Text color={colorsApp.gris} fontSize={'md'}>
+                <Text color={colors.grey} fontSize={'md'}>
                   Telefono
                 </Text>
               </Box>
@@ -74,7 +73,7 @@ export const PerfilScreen = () => {
                 <Text fontSize={'md'} fontWeight={'bold'}>
                   bryanjose.185637@gmail.com
                 </Text>
-                <Text color={colorsApp.gris} fontSize={'md'}>
+                <Text color={colors.grey} fontSize={'md'}>
                   Correo electronico
                 </Text>
               </Box>
@@ -82,12 +81,12 @@ export const PerfilScreen = () => {
           </Box>
           {/* Direcciones guardadas */}
           <Box
-            backgroundColor={colorsApp.blanco}
+            backgroundColor={colors.white}
             rounded={10}
             padding={5}
             marginTop={5}
             h={'30%'}>
-            <Text fontSize={'3xl'} color={colorsApp.gris} fontWeight={'bold'}>
+            <Text fontSize={'3xl'} color={colors.grey} fontWeight={'bold'}>
               Direcciones guardadas
             </Text>
             <FlatList
@@ -100,14 +99,14 @@ export const PerfilScreen = () => {
                       <Text fontSize={'md'} fontWeight={'bold'}>
                         {item.DetalleDireccion}
                       </Text>
-                      <Text color={colorsApp.gris} fontSize={'md'}>
+                      <Text color={colors.grey} fontSize={'md'}>
                         Detalle
                       </Text>
                     </Box>
 
                     <Box flex={1} alignItems={'flex-end'}>
                       <TouchableOpacity activeOpacity={0.8}>
-                        <IonIcon name="close" color={colorsApp.gris} />
+                        <IonIcon name="close" color={colors.grey} />
                       </TouchableOpacity>
                     </Box>
                   </Box>
@@ -132,11 +131,11 @@ const styles = StyleSheet.create({
     top: -115,
   },
   perfilImage: {
-    borderColor: colorsApp.blanco,
+    borderColor: colors.white,
     borderWidth: 1,
   },
   separator: {
-    borderColor: colorsApp.gris,
+    borderColor: colors.grey,
     borderWidth: 0.5,
   },
 });

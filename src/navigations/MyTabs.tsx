@@ -5,10 +5,10 @@ import {
   HomeScreen,
   PerfilScreen,
 } from '../screens';
-import {colorsApp} from '../helpers/colors';
 import {Platform} from 'react-native';
 import {IonIcon} from '../components';
 import { FavoriteTabs } from './FavoriteTabs';
+import { colors } from '../constans/colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,12 +20,12 @@ export const MyTabs = () => {
       }}
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: colorsApp.amarillo,
+        tabBarActiveTintColor: colors.yellow,
         tabBarLabelStyle: {
           marginBottom: Platform.OS === 'ios' ? 0 : 10,
         },
         tabBarStyle: {
-          backgroundColor: colorsApp.negro, // 'rgba(255,255,255,0.82)',
+          backgroundColor: colors.black, // 'rgba(255,255,255,0.82)',
           borderWidth: 0,
           elevation: 0,
           height: Platform.OS === 'ios' ? 80 : 60,
