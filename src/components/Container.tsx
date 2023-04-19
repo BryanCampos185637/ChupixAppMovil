@@ -1,8 +1,7 @@
 import React from 'react';
 import {Dimensions, StyleSheet} from 'react-native';
-import {Box, Text} from 'native-base';
+import {Box, Image, Text} from 'native-base';
 import {colors} from '../constans/colors';
-import {IonIcon} from './IonIcon';
 
 const heigthScreen = Dimensions.get('window').height;
 
@@ -13,10 +12,19 @@ interface ContainerProps {
 export const Container = ({children}: ContainerProps) => {
   return (
     <Box flex={1} backgroundColor={colors.black}>
-      <Box flexDirection={'row'} style={{paddingLeft: 20, top: 10}}>
-        <Text color={colors.white} fontSize={'3xl'}>
+      <Box
+        flexDirection={'row'}
+        style={{paddingHorizontal: 20, top: 10}}
+        justifyContent={'space-between'}>
+        <Text color={colors.white} fontSize={'3xl'} alignSelf={'center'}>
           Chupix
         </Text>
+        <Image
+          source={require('../assets/logo.png')}
+          size={50}
+          borderRadius={45}
+          alt="logo app"
+        />
       </Box>
       <Box
         backgroundColor={colors.ligth}
