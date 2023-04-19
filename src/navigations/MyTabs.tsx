@@ -49,7 +49,7 @@ export const MyTabs = () => {
       />
       <Tab.Screen
         options={{
-          tabBarLabel: 'Tiendas',
+          tabBarLabel: 'Favoritos',
           tabBarIcon: ({color}) => <IonIcon name="heart" color={color} />,
         }}
         name="TiendasScreen"
