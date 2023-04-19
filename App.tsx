@@ -1,12 +1,15 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {MyStack} from './src/navigations';
+import {NativeBaseProvider} from 'native-base';
+import { MyTabs } from './src/navigations/MyTabs';
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
+    <NativeBaseProvider>
+      <NavigationContainer>
+        <MyTabs />
+      </NavigationContainer>
+    </NativeBaseProvider>
   );
 }
