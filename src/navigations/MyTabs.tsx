@@ -4,11 +4,11 @@ import {
   CarritoCompraScreen,
   HomeScreen,
   PerfilScreen,
-  TiendasScreen,
 } from '../screens';
 import {colorsApp} from '../helpers/colors';
 import {Platform} from 'react-native';
 import {IonIcon} from '../components';
+import { FavoriteTabs } from './FavoriteTabs';
 
 const Tab = createBottomTabNavigator();
 
@@ -52,8 +52,8 @@ export const MyTabs = () => {
           tabBarLabel: 'Favoritos',
           tabBarIcon: ({color}) => <IonIcon name="heart" color={color} />,
         }}
-        name="TiendasScreen"
-        component={TiendasScreen}
+        name="FavoriteTabs"
+        component={FavoriteTabs}
       />
       <Tab.Screen
         options={{
