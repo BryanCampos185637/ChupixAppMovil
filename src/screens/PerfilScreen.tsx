@@ -3,13 +3,17 @@ import {Box, FlatList, Image, Text, View} from 'native-base';
 import {colors} from '../constans/colors';
 import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
 import {direcciones} from '../constans/direcciones';
-import {IonIcon} from '../components';
+import {IonIcon, Loading} from '../components';
+import {usePerfil} from '../hooks';
 
 const heigthScreen = Dimensions.get('window').height;
 
 export const PerfilScreen = () => {
-  const imgPerfil =
-    'https://ctxt.es/images/cache/800x540/nocrop/images%7Ccms-image-000020424.jpg';
+  const {foto, nombres, apellidos, email, numeroTelefono, isLoading} =
+    usePerfil();
+
+  if (isLoading) return <Loading />;
+
   return (
     <Box flex={1} backgroundColor={colors.black}>
       <Box
@@ -39,7 +43,7 @@ export const PerfilScreen = () => {
               size={250}
               borderRadius={200}
               source={{
-                uri: imgPerfil,
+                uri: foto,
               }}
               alt="Alternate Text"
             />
@@ -57,13 +61,13 @@ export const PerfilScreen = () => {
             <Box flexDirection={'row'} justifyContent={'space-between'}>
               <Box flex={1} marginRight={5}>
                 <Text fontSize={'md'} fontWeight={'bold'}>
-                  Bryan Campos
+                  {nombres} {apellidos}
                 </Text>
                 <Text color={colors.grey} fontSize={'md'}>
                   Nombre usuario
                 </Text>
                 <Text fontSize={'md'} fontWeight={'bold'} marginTop={1}>
-                  +503 70599923
+                  {numeroTelefono}
                 </Text>
                 <Text color={colors.grey} fontSize={'md'}>
                   Telefono
@@ -71,7 +75,7 @@ export const PerfilScreen = () => {
               </Box>
               <Box flex={2}>
                 <Text fontSize={'md'} fontWeight={'bold'}>
-                  bryanjose.185637@gmail.com
+                  {email}
                 </Text>
                 <Text color={colors.grey} fontSize={'md'}>
                   Correo electronico

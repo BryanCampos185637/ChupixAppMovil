@@ -1,3 +1,4 @@
+export { Loading } from './Loading';
 export {CardProductoFavorito} from './CardProductoFavorito';
 export {CardTienda} from './CardTienda';
 export {CardCarritoCompra} from './CardCarritoCompra';
