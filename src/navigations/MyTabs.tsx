@@ -14,7 +14,7 @@ const Tab = createBottomTabNavigator();
 
 export const MyTabs = () => {
   return (
-    <Tab.Navigator initialRouteName='PerfilScreen'
+    <Tab.Navigator initialRouteName='HomeScreen'
       sceneContainerStyle={{
         backgroundColor: 'white',
       }}

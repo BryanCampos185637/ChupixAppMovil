@@ -4,7 +4,7 @@ import {Text} from 'native-base';
 
 export const HomeScreen = () => {
   return (
-    <Container>
+    <Container style={{paddingHorizontal: 80}}>
       <Text>Carrito de compra</Text>
     </Container>
   );

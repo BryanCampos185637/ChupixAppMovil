@@ -51,7 +51,7 @@ export const PerfilScreen = () => {
             rounded={10}
             padding={5}
             marginTop={5}>
-            <Text fontSize={'3xl'} color={colors.grey} fontWeight={'bold'}>
+            <Text fontSize={'2xl'} color={colors.grey} fontWeight={'bold'}>
               Datos generales
             </Text>
             <Box flexDirection={'row'} justifyContent={'space-between'}>
@@ -86,7 +86,7 @@ export const PerfilScreen = () => {
             padding={5}
             marginTop={5}
             h={'30%'}>
-            <Text fontSize={'3xl'} color={colors.grey} fontWeight={'bold'}>
+            <Text fontSize={'2xl'} color={colors.grey} fontWeight={'bold'}>
               Direcciones guardadas
             </Text>
             <FlatList
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   separator: {
-    borderColor: colors.grey,
+    borderColor: 'rgba(174, 174, 174, 0.3)',
     borderWidth: 0.5,
   },
 });

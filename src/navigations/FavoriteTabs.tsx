@@ -1,8 +1,8 @@
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {ProductoFavoritoScreen, TiendasScreen} from '../screens';
-import {Container, IonIcon} from '../components';
-import {colors} from '../constans/colors';
+import {Container} from '../components';
+import { colors } from '../constans/colors';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -13,6 +13,8 @@ const Menu = () => {
         tabBarStyle: {
           backgroundColor: colors.ligth,
         },
+        tabBarPressColor: colors.grey,
+        tabBarActiveTintColor: colors.black,
       }}>
       <Tab.Screen
         name="ProductoFavoritoScreen"

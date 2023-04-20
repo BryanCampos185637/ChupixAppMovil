@@ -19,7 +19,7 @@ export const CardTienda = () => {
       backgroundColor={colors.white}
       marginTop={3}
       style={styles.container}
-      padding={5}
+      padding={3}
       borderRadius={10}>
       <TouchableOpacity style={styles.icon}>
         <IonIcon
@@ -38,7 +38,7 @@ export const CardTienda = () => {
         />
       </Box>
       <Box flex={2}>
-        <Text color={colors.black} fontSize={'4xl'}>
+        <Text color={colors.black} fontSize={'2xl'}>
           Tienda
         </Text>
         <Text color={colors.black} fontSize={'md'}>
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: 'absolute',
-    right: 5,
-    top: 5,
+    right: 8,
+    top: 8,
   },
 });

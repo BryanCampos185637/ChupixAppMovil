@@ -1,5 +1,5 @@
-export { CardTienda } from './CardTienda';
-
+export {CardProductoFavorito} from './CardProductoFavorito';
+export {CardTienda} from './CardTienda';
 export {CardCarritoCompra} from './CardCarritoCompra';
 export {Container} from './Container';
 export {IonIcon} from './IonIcon';

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, StyleProp, StyleSheet, ViewStyle} from 'react-native';
 import {Box, Image, Text} from 'native-base';
 import {colors} from '../constans/colors';
 
@@ -7,9 +7,10 @@ const heigthScreen = Dimensions.get('window').height;
 
 interface ContainerProps {
   children: JSX.Element | JSX.Element[];
+  style?: StyleProp<ViewStyle>;
 }
 
-export const Container = ({children}: ContainerProps) => {
+export const Container = ({children, style}: ContainerProps) => {
   return (
     <Box flex={1} backgroundColor={colors.black}>
       <Box
@@ -29,7 +30,7 @@ export const Container = ({children}: ContainerProps) => {
       <Box
         backgroundColor={colors.ligth}
         borderTopRadius={'3xl'}
-        style={styles.subContainer}
+        style={[styles.subContainer, {...(style as any)}]}
         h={['98%']}>
         {children}
       </Box>

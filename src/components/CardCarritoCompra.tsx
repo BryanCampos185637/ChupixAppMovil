@@ -14,7 +14,7 @@ export const CardCarritoCompra = () => {
       backgroundColor={colors.white}
       marginTop={3}
       style={styles.container}
-      padding={5}
+      padding={3}
       borderRadius={10}>
       <TouchableOpacity style={styles.icon}>
         <IonIcon name="close" color={colors.black} />
@@ -29,14 +29,13 @@ export const CardCarritoCompra = () => {
           size="xl"
         />
       </Box>
-      <Box flex={2}>
-        <Text color={colors.black} fontSize={'4xl'}>
+      <Box flex={2} >
+        <Text color={colors.black} fontSize={'2xl'}>
           Nombre artículo
         </Text>
         <Text color={colors.black} fontSize={'sm'}>
           Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s
+          industry.
         </Text>
         <Text fontSize={'xl'} fontWeight={'bold'}>
           $18.00

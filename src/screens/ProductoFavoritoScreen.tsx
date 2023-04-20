@@ -1,26 +1,19 @@
 import React from 'react';
-import {CardTienda, Container} from '../components';
-import {ScrollView, Text, View} from 'native-base';
-import {colors} from '../constans/colors';
+import {CardProductoFavorito} from '../components';
+import {Box, FlatList, View} from 'native-base';
+import {direcciones} from '../constans/direcciones';
 
 export const ProductoFavoritoScreen = () => {
   return (
-    <ScrollView>
-    <Text color={colors.black} fontSize={'sm'}>
-      Lorem Ipsum is simply dummy text of the printing and typesetting
-      industry. Lorem Ipsum has been the industry's standard dummy text
-      ever since the 1500s
-    </Text>
-    <CardTienda />
-    <CardTienda />
-    <CardTienda />
-    <CardTienda />
-    <CardTienda />
-    <CardTienda />
-    <CardTienda />
-    <CardTienda />
-    <CardTienda />
-    <View style={{height:80}}/>
-  </ScrollView>
+    <Box flex={1}>
+      <FlatList
+      marginTop={2}
+        data={direcciones}
+        renderItem={() => <CardProductoFavorito />}
+        keyExtractor={item => `producto_favorito_${item.id}`}
+        numColumns={2}
+        ListFooterComponent={()=><View style={{height:100}}/>}
+      />
+    </Box>
   );
 };
