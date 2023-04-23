@@ -1,3 +1,5 @@
+export {CrearCuentaScreen} from './CrearCuentaScreen';
+export {LoginScreen} from './LoginScreen';
 export {ProductoFavoritoScreen} from './ProductoFavoritoScreen';
 export {PerfilScreen} from './PerfilScreen';
 export {TiendasScreen} from './TiendasScreen';

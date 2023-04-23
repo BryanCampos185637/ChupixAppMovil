@@ -1,22 +1,20 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {
-  CarritoCompraScreen,
-  HomeScreen,
-  PerfilScreen,
-} from '../screens';
+import {CarritoCompraScreen, HomeScreen, PerfilScreen} from '../screens';
 import {Platform} from 'react-native';
 import {IonIcon} from '../components';
-import { FavoriteTabs } from './FavoriteTabs';
-import { colors } from '../constans/colors';
+import {FavoriteTabs} from './FavoriteTabs';
+import {colors} from '../constans/colors';
+import { AccountStack } from './AccountStack';
 
 const Tab = createBottomTabNavigator();
 
 export const MyTabs = () => {
   return (
-    <Tab.Navigator initialRouteName='HomeScreen'
+    <Tab.Navigator
+      initialRouteName="AccountStack"
       sceneContainerStyle={{
-        backgroundColor: 'white',
+        backgroundColor: colors.white,
       }}
       screenOptions={{
         headerShown: false,
@@ -31,6 +29,14 @@ export const MyTabs = () => {
           height: Platform.OS === 'ios' ? 80 : 60,
         },
       }}>
+        <Tab.Screen
+        options={{
+          tabBarLabel: 'Cuenta',
+          tabBarIcon: ({color}) => <IonIcon name="person-add" color={color} />,
+        }}
+        name="AccountStack"
+        component={AccountStack}
+      />
       <Tab.Screen
         options={{
           tabBarLabel: 'Inicio',

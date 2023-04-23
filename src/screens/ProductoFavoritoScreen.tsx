@@ -7,12 +7,12 @@ export const ProductoFavoritoScreen = () => {
   return (
     <Box flex={1}>
       <FlatList
-      marginTop={2}
+        marginTop={2}
         data={direcciones}
         renderItem={() => <CardProductoFavorito />}
         keyExtractor={item => `producto_favorito_${item.id}`}
         numColumns={2}
-        ListFooterComponent={()=><View style={{height:100}}/>}
+        ListFooterComponent={() => <View style={{height: 100}} />}
       />
     </Box>
   );
