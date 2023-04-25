@@ -4,13 +4,14 @@ import {colors} from '../constans/colors';
 import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
 import {direcciones} from '../constans/direcciones';
 import {IonIcon, Loading} from '../components';
-import {usePerfil} from '../hooks';
+import {useAuthStore, usePerfil} from '../hooks';
 
 const heigthScreen = Dimensions.get('window').height;
 
 export const PerfilScreen = () => {
+  const {id, onLogout} = useAuthStore();
   const {foto, nombres, apellidos, email, numeroTelefono, isLoading} =
-    usePerfil();
+    usePerfil(id);
 
   if (isLoading) return <Loading />;
 
@@ -47,6 +48,11 @@ export const PerfilScreen = () => {
               }}
               alt="Alternate Text"
             />
+            <TouchableOpacity activeOpacity={0.8} onPress={() => onLogout()}>
+              <Text color={colors.red} fontSize={'md'}>
+                Cerrar sesión
+              </Text>
+            </TouchableOpacity>
           </Box>
 
           {/* datos personales */}
@@ -119,7 +125,6 @@ export const PerfilScreen = () => {
               )}
             />
           </Box>
-          <View style={{height: 100}} />
         </Box>
       </Box>
     </Box>

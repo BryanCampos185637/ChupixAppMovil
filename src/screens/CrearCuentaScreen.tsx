@@ -1,77 +1,95 @@
 import React from 'react';
-import {Container} from '../components';
-import {Dimensions, TouchableOpacity} from 'react-native';
-import {Box, Button, Input, Stack, Text} from 'native-base';
-import {colors} from '../constans/colors';
+import * as Yup from 'yup';
+import {Dimensions, KeyboardAvoidingView, Platform} from 'react-native';
+
+import {Box, Button, Text} from 'native-base';
 import {StackScreenProps} from '@react-navigation/stack';
+import {Formik} from 'formik';
+
+import {Container, InputFormik} from '../components';
+import {colors} from '../constans/colors';
+import {RegisterAccount} from '../interfaces/LoginResponse';
+import {useAuthStore} from '../hooks';
 
 const {width} = Dimensions.get('window');
+
+const initialForm: RegisterAccount = {
+  nombre: '',
+  apellidos: '',
+  email: '',
+  password: '',
+  numeroTelefono: '',
+  fotoPerfil: null,
+};
 
 interface Props extends StackScreenProps<any, any> {}
 
 export const CrearCuentaScreen = ({navigation}: Props) => {
+  const {onRegister} = useAuthStore();
+
   return (
     <Container>
-      <Box
-        justifyContent={'center'}
-        alignItems={'center'}
-        borderRadius={25}
-        padding={2}>
-        <Text fontSize={'5xl'} fontWeight={'bold'}>
-          Crear cuenta
-        </Text>
-        <Stack space={4} w="100%" marginTop={3}>
-          <Text fontSize={'md'} color={colors.black}>
-            Nombres:
+      <KeyboardAvoidingView
+        style={{flex: 1}}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <Box
+          justifyContent={'center'}
+          alignItems={'center'}
+          borderRadius={25}
+          padding={2}>
+          <Text fontSize={'5xl'} fontWeight={'bold'}>
+            Crear cuenta
           </Text>
-          <Input variant="rounded" placeholder="Nombre Nombre" type="text" />
-        </Stack>
-        <Stack space={4} w="100%" marginTop={3}>
-          <Text fontSize={'md'} color={colors.black}>
-            Apellidos:
-          </Text>
-          <Input variant="rounded" placeholder="Apellido Apellido" type="text" />
-        </Stack>
-        <Stack space={4} w="100%" marginTop={3}>
-          <Text fontSize={'md'} color={colors.black}>
-            Telefono:
-          </Text>
-          <Input variant="rounded" placeholder="00000000" type="text" />
-        </Stack>
-        <Stack space={4} w="100%" marginTop={5}>
-          <Text fontSize={'md'} color={colors.black}>
-            Correo:
-          </Text>
-          <Input variant="rounded" placeholder="chupix@gmail.com" type="text" />
-        </Stack>
-        <Stack space={4} w="100%" marginTop={3}>
-          <Text fontSize={'md'} color={colors.black}>
-            Contraseña:
-          </Text>
-          <Input variant="rounded" placeholder="************" type="password" />
-        </Stack>
-        <Box justifyContent={'center'} marginTop={10}>
-          <Button
-            backgroundColor={colors.yellow}
-            borderRadius={50}
-            width={width * 0.6}>
-            <Text color={colors.black} fontSize={'xl'}>
-              Crear cuenta
-            </Text>
-          </Button>
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={() => navigation.replace('LoginScreen')}>
-            <Text
-              fontSize={'xl'}
-              color={colors.grey}
-              marginTop={10}
-              alignSelf={'center'}>
-              Iniciar sesión
-            </Text>
-          </TouchableOpacity>
+          <Formik
+            initialValues={initialForm}
+            onSubmit={onRegister}
+            validationSchema={Yup.object({
+              nombre: Yup.string().required('El nombre es requerido'),
+              apellidos: Yup.string().required('Los apellidos es requerido'),
+              numeroTelefono: Yup.string().required('El telefono es requerido'),
+              email: Yup.string()
+                .required('El correo es requerido')
+                .email('Debe ser un correo'),
+              password: Yup.string().required('La contraseña es requerida'),
+            })}>
+            {({handleSubmit}) => (
+              <>
+                <InputFormik name="nombre" label="Nombre" type="text" />
+                <InputFormik name="apellidos" label="Apellidos" type="text" />
+                <InputFormik
+                  name="numeroTelefono"
+                  label="Telefono"
+                  type="text"
+                />
+                <InputFormik name="email" label="Correo" type="text" />
+                <InputFormik name="password" label="Contraseña" type="password" />
+                <Box justifyContent={'center'} marginTop={10}>
+                  <Button
+                    backgroundColor={colors.yellow}
+                    borderRadius={50}
+                    width={width * 0.6}
+                    onPress={handleSubmit}>
+                    <Text color={colors.black} fontSize={'xl'}>
+                      Crear cuenta
+                    </Text>
+                  </Button>
+                  <Button
+                    marginTop={5}
+                    variant="outline"
+                    colorScheme={'gray'}
+                    onPress={() => navigation.replace('LoginScreen')}
+                    borderRadius={50}
+                    width={width * 0.6}>
+                    <Text color={colors.black} fontSize={'xl'}>
+                      Iniciar sesión
+                    </Text>
+                  </Button>
+                </Box>
+              </>
+            )}
+          </Formik>
         </Box>
-      </Box>
+      </KeyboardAvoidingView>
     </Container>
   );
 };

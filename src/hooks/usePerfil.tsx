@@ -1,25 +1,24 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {Perfil} from '../interfaces/perfil';
 import {getUsuarioById} from '../services/account';
+import {handlerError} from '../helpers/handlerError';
 
-export const usePerfil = () => {
+export const usePerfil = (idPerfil: string) => {
   const [perfil, setPerfil] = useState<Perfil | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     getPerfil();
   }, []);
 
-  const getPerfil = async () => {
+  const getPerfil = useCallback(async () => {
     try {
-      const result = await getUsuarioById(
-        '74289cb6-510b-40b7-963f-dc94f7d901ab',
-      );
+      const result = await getUsuarioById(idPerfil);
       setPerfil(result);
       setIsLoading(false);
     } catch (error) {
-      console.error(error);
+      handlerError(error);
     }
-  };
+  }, [idPerfil]);
 
   return {
     perfil,

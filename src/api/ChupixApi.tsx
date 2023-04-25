@@ -1,27 +1,28 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-const VITE_URL_BASE = 'https://chupix.bsite.net/api/v1/';
+const URL_BASE = 'https://chupix.bsite.net/api/v1/';
 
-export const ChupixApiFormData = (props: ChupixFormDataProps) => {
+export const ChupixApiFormData = async (props: ChupixFormDataProps) => {
   return axios({
     method: props.method,
-    url: VITE_URL_BASE + props.url,
+    url: URL_BASE + props.url,
     data: props.data,
     headers: {
       'Content-Type': 'multipart/form-data',
-      // Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: `Bearer ${await AsyncStorage.getItem('token')}`,
     },
   });
 };
 
 const ChupixApi = axios.create({
-  baseURL: VITE_URL_BASE,
+  baseURL: URL_BASE,
 });
 
 // Todo: configurar interceptores
-ChupixApi.interceptors.request.use((config: any) => {
+ChupixApi.interceptors.request.use(async (config: any) => {
   config.headers = {
     ...config.headers,
-    //Authorization: `Bearer ${localStorage.getItem("token")}`,
+    Authorization: `Bearer ${await AsyncStorage.getItem('token')}`,
   };
   return config;
 });

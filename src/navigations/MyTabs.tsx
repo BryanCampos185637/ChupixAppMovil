@@ -5,14 +5,21 @@ import {Platform} from 'react-native';
 import {IonIcon} from '../components';
 import {FavoriteTabs} from './FavoriteTabs';
 import {colors} from '../constans/colors';
-import { AccountStack } from './AccountStack';
+import {AccountStack} from './AccountStack';
+import {useVerifyToken} from '../hooks';
+import {LoadingScreen} from '../screens/LoadingScreen';
 
 const Tab = createBottomTabNavigator();
 
 export const MyTabs = () => {
+  const stateLogin = useVerifyToken();
+  if (stateLogin === 'verificando') {
+    return <LoadingScreen />;
+  }
+
   return (
     <Tab.Navigator
-      initialRouteName="AccountStack"
+      initialRouteName="HomeScreen"
       sceneContainerStyle={{
         backgroundColor: colors.white,
       }}
@@ -29,46 +36,55 @@ export const MyTabs = () => {
           height: Platform.OS === 'ios' ? 80 : 60,
         },
       }}>
-        <Tab.Screen
-        options={{
-          tabBarLabel: 'Cuenta',
-          tabBarIcon: ({color}) => <IonIcon name="person-add" color={color} />,
-        }}
-        name="AccountStack"
-        component={AccountStack}
-      />
-      <Tab.Screen
-        options={{
-          tabBarLabel: 'Inicio',
-          tabBarIcon: ({color}) => <IonIcon name="home" color={color} />,
-        }}
-        name="HomeScreen"
-        component={HomeScreen}
-      />
-      <Tab.Screen
-        options={{
-          tabBarLabel: 'Carrito',
-          tabBarIcon: ({color}) => <IonIcon name="cart" color={color} />,
-        }}
-        name="CarritoCompraScreen"
-        component={CarritoCompraScreen}
-      />
-      <Tab.Screen
-        options={{
-          tabBarLabel: 'Favoritos',
-          tabBarIcon: ({color}) => <IonIcon name="heart" color={color} />,
-        }}
-        name="FavoriteTabs"
-        component={FavoriteTabs}
-      />
-      <Tab.Screen
-        options={{
-          tabBarLabel: 'Perfil',
-          tabBarIcon: ({color}) => <IonIcon name="person" color={color} />,
-        }}
-        name="PerfilScreen"
-        component={PerfilScreen}
-      />
+      {stateLogin === 'no-autenticado' ? (
+        <>
+          <Tab.Screen
+            options={{
+              tabBarLabel: 'Inicia sesión',
+              tabBarIcon: ({color}) => (
+                <IonIcon name="lock-closed" color={color} />
+              ),
+            }}
+            name="AccountStack"
+            component={AccountStack}
+          />
+        </>
+      ) : (
+        <>
+          <Tab.Screen
+            options={{
+              tabBarLabel: 'Inicio',
+              tabBarIcon: ({color}) => <IonIcon name="home" color={color} />,
+            }}
+            name="HomeScreen"
+            component={HomeScreen}
+          />
+          <Tab.Screen
+            options={{
+              tabBarLabel: 'Carrito',
+              tabBarIcon: ({color}) => <IonIcon name="cart" color={color} />,
+            }}
+            name="CarritoCompraScreen"
+            component={CarritoCompraScreen}
+          />
+          <Tab.Screen
+            options={{
+              tabBarLabel: 'Favoritos',
+              tabBarIcon: ({color}) => <IonIcon name="heart" color={color} />,
+            }}
+            name="FavoriteTabs"
+            component={FavoriteTabs}
+          />
+          <Tab.Screen
+            options={{
+              tabBarLabel: 'Perfil',
+              tabBarIcon: ({color}) => <IonIcon name="person" color={color} />,
+            }}
+            name="PerfilScreen"
+            component={PerfilScreen}
+          />
+        </>
+      )}
     </Tab.Navigator>
   );
 };
