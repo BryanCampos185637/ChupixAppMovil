@@ -1,7 +1,7 @@
 import React from 'react';
-import {Dimensions, KeyboardAvoidingView, Platform} from 'react-native';
+import {Dimensions} from 'react-native';
 
-import {Box, Button, Text} from 'native-base';
+import {Box, Button, Text, View} from 'native-base';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 
@@ -19,21 +19,21 @@ export const LoginScreen = ({navigation}: Props) => {
   const {onLogin} = useAuthStore();
 
   return (
-    <Container style={{margin: 0}}>
+    <Container activateScroll={true}>
       <Box
         justifyContent={'center'}
         alignItems={'center'}
         borderRadius={25}
         padding={2}
-        top={height * 0.15}>
+        flex={1}>
         <Text fontSize={'5xl'} fontWeight={'bold'}>
           Iniciar sesión
         </Text>
         <Formik
           initialValues={
             {
-              email: 'bryanjose.185637@gmail.com',
-              password: 'ABCDabcd123$',
+              email: '',
+              password: '',
             } as LoginRequest
           }
           validationSchema={Yup.object({
