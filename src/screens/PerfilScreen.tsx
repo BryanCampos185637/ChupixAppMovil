@@ -1,41 +1,20 @@
 import React from 'react';
-import {Box, FlatList, Image, Text, View} from 'native-base';
+import {Box, Button, Image, ScrollView, Text, View} from 'native-base';
 import {colors} from '../constans/colors';
-import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
-import {direcciones} from '../constans/direcciones';
-import {IonIcon, Loading} from '../components';
+import {Dimensions, StyleSheet} from 'react-native';
+import {Container, IonIcon, ItemDireccion} from '../components';
 import {useAuthStore, usePerfil} from '../hooks';
 
 const heigthScreen = Dimensions.get('window').height;
 
 export const PerfilScreen = () => {
   const {id, onLogout} = useAuthStore();
-  const {foto, nombres, apellidos, email, numeroTelefono, isLoading} =
+  const {foto, nombres, apellidos, email, numeroTelefono, direcciones} =
     usePerfil(id);
 
-  if (isLoading) return <Loading />;
-
   return (
-    <Box flex={1} backgroundColor={colors.black}>
-      <Box
-        flexDirection={'row'}
-        style={{paddingHorizontal: 20, top: 10}}
-        justifyContent={'space-between'}>
-        <Text color={colors.white} fontSize={'3xl'} alignSelf={'center'}>
-          Chupix
-        </Text>
-        <Image
-          source={require('../assets/logo.png')}
-          size={50}
-          borderRadius={45}
-          alt="logo app"
-        />
-      </Box>
-      <Box
-        backgroundColor={colors.ligth}
-        borderTopRadius={'3xl'}
-        style={styles.subContainer}
-        h={['80%']}>
+    <ScrollView flex={1} backgroundColor={colors.ligth}>
+      <Container topFather={0.2}>
         <Box style={styles.containerPerfilImage}>
           {/* foto de perfil */}
           <Box alignItems={'center'}>
@@ -44,15 +23,29 @@ export const PerfilScreen = () => {
               size={250}
               borderRadius={200}
               source={{
-                uri: foto,
+                uri: foto
+                  ? foto
+                  : 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif',
               }}
-              alt="Alternate Text"
+              alt={`${nombres} ${apellidos}`}
             />
-            <TouchableOpacity activeOpacity={0.8} onPress={() => onLogout()}>
-              <Text color={colors.red} fontSize={'md'}>
+            <Button
+              marginTop={3}
+              flexDirection={'row'}
+              variant="outline"
+              colorScheme={'gray'}
+              onPress={onLogout}
+              borderRadius={50}
+              alignItems={'center'}>
+              <Text color={colors.red} fontSize={'md'} alignSelf={'center'}>
                 Cerrar sesión
+                <IonIcon
+                  name="arrow-back-circle"
+                  size={16}
+                  color={colors.red}
+                />
               </Text>
-            </TouchableOpacity>
+            </Button>
           </Box>
 
           {/* datos personales */}
@@ -94,40 +87,18 @@ export const PerfilScreen = () => {
             backgroundColor={colors.white}
             rounded={10}
             padding={5}
-            marginTop={5}
-            h={'30%'}>
+            marginTop={5}>
             <Text fontSize={'2xl'} color={colors.grey} fontWeight={'bold'}>
               Direcciones guardadas
             </Text>
-            <FlatList
-              data={direcciones}
-              keyExtractor={item => `direction_${item.id}`}
-              renderItem={({item}) => (
-                <>
-                  <Box padding={1} flexDirection={'row'}>
-                    <Box flex={2}>
-                      <Text fontSize={'md'} fontWeight={'bold'}>
-                        {item.DetalleDireccion}
-                      </Text>
-                      <Text color={colors.grey} fontSize={'md'}>
-                        Detalle
-                      </Text>
-                    </Box>
-
-                    <Box flex={1} alignItems={'flex-end'}>
-                      <TouchableOpacity activeOpacity={0.8}>
-                        <IonIcon name="close" color={colors.grey} />
-                      </TouchableOpacity>
-                    </Box>
-                  </Box>
-                  <View style={styles.separator} />
-                </>
-              )}
-            />
+            {direcciones.map(item => (
+              <ItemDireccion key={`direccion_${item.id}`} item={item} />
+            ))}
           </Box>
         </Box>
-      </Box>
-    </Box>
+      </Container>
+      <View style={styles.space} />
+    </ScrollView>
   );
 };
 
@@ -146,5 +117,8 @@ const styles = StyleSheet.create({
   separator: {
     borderColor: 'rgba(174, 174, 174, 0.3)',
     borderWidth: 0.5,
+  },
+  space: {
+    height: 100,
   },
 });

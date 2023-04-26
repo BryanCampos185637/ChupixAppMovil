@@ -9,10 +9,14 @@ interface Props {
   label: string;
   type: 'text' | 'password';
   placeholder?: string;
+  keyboardType?: 'numeric' | 'email-address' | 'default';
 }
 
 export const InputFormik = (props: Props) => {
   const {values, touched, errors, validateForm} = useFormikContext<any>();
+  if (!props.keyboardType) {
+    props.keyboardType = 'default';
+  }
   return (
     <Box alignItems={'flex-start'} marginTop={2}>
       <Text fontSize={'md'} color={colors.black}>
@@ -24,6 +28,7 @@ export const InputFormik = (props: Props) => {
         w="100%"
         h={'10'}
         placeholder={props.placeholder}
+        keyboardType={props.keyboardType}
         type={props.type}
         onChangeText={value => {
           values[props.name] = value;

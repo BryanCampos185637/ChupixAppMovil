@@ -1,16 +1,26 @@
 import React from 'react';
 import {Dimensions, StyleProp, StyleSheet, ViewStyle} from 'react-native';
-import {Box, Image, Text} from 'native-base';
+
+import {Box, Image, ScrollView, Text} from 'native-base';
+
 import {colors} from '../constans/colors';
+import {SpinnerLoading} from './SpinnerLoading';
 
 const heigthScreen = Dimensions.get('window').height;
 
 interface ContainerProps {
   children: JSX.Element | JSX.Element[];
   style?: StyleProp<ViewStyle>;
+  activateScroll?: boolean;
+  topFather?: number;
 }
 
-export const Container = ({children, style}: ContainerProps) => {
+export const Container = ({
+  children,
+  style,
+  topFather = 0.02,
+  activateScroll = false,
+}: ContainerProps) => {
   return (
     <Box flex={1} backgroundColor={colors.black}>
       <Box
@@ -27,13 +37,31 @@ export const Container = ({children, style}: ContainerProps) => {
           alt="logo app"
         />
       </Box>
-      <Box
-        backgroundColor={colors.ligth}
-        borderTopRadius={'3xl'}
-        style={[styles.subContainer, {...(style as any)}]}
-        h={['98%']}>
-        {children}
-      </Box>
+      {activateScroll ? (
+        <ScrollView
+          backgroundColor={colors.ligth}
+          borderTopRadius={'3xl'}
+          style={[
+            {...styles.subContainer, top: heigthScreen * topFather},
+            {...(style as any)},
+          ]}
+          h={'100%'}>
+          {children}
+          <SpinnerLoading />
+        </ScrollView>
+      ) : (
+        <Box
+          backgroundColor={colors.ligth}
+          borderTopRadius={'3xl'}
+          style={[
+            {...styles.subContainer, top: heigthScreen * topFather},
+            {...(style as any)},
+          ]}
+          h={'100%'}>
+          {children}
+          <SpinnerLoading />
+        </Box>
+      )}
     </Box>
   );
 };
@@ -41,6 +69,5 @@ export const Container = ({children, style}: ContainerProps) => {
 const styles = StyleSheet.create({
   subContainer: {
     paddingHorizontal: 20,
-    top: heigthScreen * 0.02,
   },
 });

@@ -46,7 +46,10 @@ export const CrearCuentaScreen = ({navigation}: Props) => {
             validationSchema={Yup.object({
               nombre: Yup.string().required('El nombre es requerido'),
               apellidos: Yup.string().required('Los apellidos es requerido'),
-              numeroTelefono: Yup.string().required('El telefono es requerido'),
+              numeroTelefono: Yup.string()
+                .required('El télefono es requerido')
+                .min(8, 'Debe contener 8 digitos')
+                .max(8, 'No puede contener mas de 8 digitos'),
               email: Yup.string()
                 .required('El correo es requerido')
                 .email('Debe ser un correo'),
@@ -58,11 +61,21 @@ export const CrearCuentaScreen = ({navigation}: Props) => {
                 <InputFormik name="apellidos" label="Apellidos" type="text" />
                 <InputFormik
                   name="numeroTelefono"
-                  label="Telefono"
+                  label="Télefono"
                   type="text"
+                  keyboardType="numeric"
                 />
-                <InputFormik name="email" label="Correo" type="text" />
-                <InputFormik name="password" label="Contraseña" type="password" />
+                <InputFormik
+                  name="email"
+                  label="Correo"
+                  type="text"
+                  keyboardType="email-address"
+                />
+                <InputFormik
+                  name="password"
+                  label="Contraseña"
+                  type="password"
+                />
                 <Box justifyContent={'center'} marginTop={10}>
                   <Button
                     backgroundColor={colors.yellow}

@@ -9,25 +9,23 @@ const heigthScreen = Dimensions.get('window').height;
 export const CarritoCompraScreen = () => {
   return (
     <>
-      <Container>
-        <ScrollView>
-          <Text color={colors.black} fontSize={'3xl'}>
-            Carrito de compra
-          </Text>
-          <Text color={colors.black} fontSize={'md'}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry.
-          </Text>
-          <CardCarritoCompra />
-          <CardCarritoCompra />
-          <CardCarritoCompra />
-          <CardCarritoCompra />
-          <CardCarritoCompra />
-          <CardCarritoCompra />
-          <CardCarritoCompra />
-          <CardCarritoCompra />
-          <View style={{height: 100}} />
-        </ScrollView>
+      <Container activateScroll={true}>
+        <Text color={colors.black} fontSize={'3xl'}>
+          Carrito de compra
+        </Text>
+        <Text color={colors.black} fontSize={'md'}>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry.
+        </Text>
+        <CardCarritoCompra />
+        <CardCarritoCompra />
+        <CardCarritoCompra />
+        <CardCarritoCompra />
+        <CardCarritoCompra />
+        <CardCarritoCompra />
+        <CardCarritoCompra />
+        <CardCarritoCompra />
+        <View style={{height: 100}} />
       </Container>
       <Box
         justifyContent={'space-between'}

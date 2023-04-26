@@ -7,6 +7,6 @@ interface IconProps {
   color?: string;
 }
 
-export const IonIcon = ({name, color = '#900', size = 30}: IconProps) => {
+export const IonIcon = ({name, color = '#000000', size = 30}: IconProps) => {
   return <Icon name={name} size={size} color={color} />;
 };
