@@ -1,5 +1,5 @@
 import React from 'react';
-import {CardProductoFavorito} from '../components';
+import {CardProductoFavorito, LoadingFlatList} from '../components';
 import {Box, FlatList, View} from 'native-base';
 import {direcciones} from '../constans/direcciones';
 
@@ -12,7 +12,7 @@ export const ProductoFavoritoScreen = () => {
         renderItem={() => <CardProductoFavorito />}
         keyExtractor={item => `producto_favorito_${item.id}`}
         numColumns={2}
-        ListFooterComponent={() => <View style={{height: 100}} />}
+        ListFooterComponent={() => <LoadingFlatList />}
       />
     </Box>
   );

@@ -8,6 +8,7 @@ import {colors} from '../constans/colors';
 import {AccountStack} from './AccountStack';
 import {useVerifyToken} from '../hooks';
 import {LoadingScreen} from '../screens/LoadingScreen';
+import {AgregarCarritoStack} from './AgregarCarritoStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -82,6 +83,14 @@ export const MyTabs = () => {
             }}
             name="PerfilScreen"
             component={PerfilScreen}
+          />
+          <Tab.Screen
+            options={{
+              tabBarLabel: 'listar',
+              tabBarIcon: ({color}) => <IonIcon name="reader" color={color} />,
+            }}
+            name="AgregarCarritoStack"
+            component={AgregarCarritoStack}
           />
         </>
       )}

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Box, Image, Text} from 'native-base';
 import {colors} from '../constans/colors';
 import {IonIcon} from './IonIcon';
 import {getUrlImageRandom} from '../helpers/getUrlImageRandom';
+import {useNavigation} from '@react-navigation/native';
 
 export const CardProductoFavorito = () => {
+  const uri = useMemo(() => getUrlImageRandom(), [getUrlImageRandom]);
+  const navigation = useNavigation();
   return (
     <Box
       flex={1}
@@ -23,7 +26,7 @@ export const CardProductoFavorito = () => {
       <Box flex={1}>
         <Image
           source={{
-            uri: getUrlImageRandom(),
+            uri,
           }}
           alt="Alternate Text"
           size={150}
@@ -41,7 +44,10 @@ export const CardProductoFavorito = () => {
           $9.80
         </Text>
       </Box>
-      <TouchableOpacity style={styles.btnCard} activeOpacity={0.8}>
+      <TouchableOpacity
+        style={styles.btnCard}
+        activeOpacity={0.8}
+        onPress={() => navigation.navigate('AgregarCarritoStack' as never)}>
         <Text color={colors.black} fontSize={'sm'}>
           Agregar al carrito
         </Text>

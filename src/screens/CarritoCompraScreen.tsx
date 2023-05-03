@@ -1,7 +1,7 @@
 import React from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
 import {CardCarritoCompra, Container} from '../components';
-import {Box, Button, ScrollView, Text} from 'native-base';
+import {Box, Button, Text} from 'native-base';
 import {colors} from '../constans/colors';
 
 const heigthScreen = Dimensions.get('window').height;

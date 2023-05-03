@@ -1,7 +1,7 @@
 import React from 'react';
 import {Dimensions} from 'react-native';
 
-import {Box, Button, Text, View} from 'native-base';
+import {Box, Button, Text} from 'native-base';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 
@@ -11,7 +11,7 @@ import {StackScreenProps} from '@react-navigation/stack';
 import {useAuthStore} from '../hooks';
 import {LoginRequest} from '../interfaces/LoginResponse';
 
-const {width, height} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 interface Props extends StackScreenProps<any, any> {}
 
@@ -32,20 +32,28 @@ export const LoginScreen = ({navigation}: Props) => {
         <Formik
           initialValues={
             {
-              email: '',
-              password: '',
+              email: 'bryanjose.185637@gmail.com',
+              password: 'ABCDabcd123$',
             } as LoginRequest
           }
           validationSchema={Yup.object({
             email: Yup.string()
+              .trim()
               .required('El correo es requerido')
               .email('Debe ser un correo'),
-            password: Yup.string().required('La contraseña es requerida'),
+            password: Yup.string()
+              .trim()
+              .required('La contraseña es requerida'),
           })}
           onSubmit={onLogin}>
           {formikProps => (
             <>
-              <InputFormik label="Correo" name="email" type="text" />
+              <InputFormik
+                label="Correo"
+                name="email"
+                type="text"
+                keyboardType="email-address"
+              />
               <InputFormik label="Contraseña" name="password" type="password" />
               <Box justifyContent={'center'} marginTop={20}>
                 <Button

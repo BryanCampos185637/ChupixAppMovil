@@ -27,5 +27,5 @@ export const registerService = async (model: FormData) => {
     url: 'Account/Register',
     data: model,
   });
-  return data;
+  return {...data} as LoginResponse;
 };

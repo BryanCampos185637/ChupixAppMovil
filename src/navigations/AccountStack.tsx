@@ -7,7 +7,6 @@ const Stack = createStackNavigator();
 export const AccountStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="TiendasScreen"
       screenOptions={{
         headerShown: false,
         cardStyle: {

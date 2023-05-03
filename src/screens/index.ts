@@ -1,3 +1,5 @@
+export { AgregarCarrito } from './AgregarCarrito';
+
 export {CrearCuentaScreen} from './CrearCuentaScreen';
 export {LoginScreen} from './LoginScreen';
 export {ProductoFavoritoScreen} from './ProductoFavoritoScreen';

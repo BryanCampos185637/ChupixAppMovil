@@ -1,4 +1,7 @@
-export { ImageFormik } from './ImageFormik';
+export {LoadingFlatList} from './LoadingFlatList';
+export {ContainerHome} from './ContainerHome';
+export {CardProductoHome} from './CardProductoHome';
+export {ImageFormik} from './ImageFormik';
 export {ItemDireccion} from './ItemDireccion';
 export {SpinnerLoading} from './SpinnerLoading';
 export {ErrorFormik} from './ErrorFormik';

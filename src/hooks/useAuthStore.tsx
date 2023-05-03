@@ -35,7 +35,7 @@ export const useAuthStore = () => {
       const form = transformResgisterAccountToFormData(model);
       const user = await registerService(form);
       console.log(user);
-      dispatch(login({...user}));
+      dispatch(login(user));
       await AsyncStorage.setItem('token', user.token);
       await AsyncStorage.setItem('refreshToken', user.refreshToken);
     } catch (error) {
