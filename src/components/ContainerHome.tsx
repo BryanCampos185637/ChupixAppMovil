@@ -8,7 +8,7 @@ interface Props {
 }
 export const ContainerHome = ({titulo, children}: Props) => {
   return (
-    <View backgroundColor={colors.brown} marginBottom={4}>
+    <View backgroundColor={colors.brown} marginBottom={2}>
       <Text
         color={colors.white}
         fontSize={'3xl'}

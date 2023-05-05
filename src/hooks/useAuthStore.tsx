@@ -19,7 +19,7 @@ export const useAuthStore = () => {
       onStartLoading();
       const user = await loginService(model);
       console.log(user);
-      dispatch(login({...user}));
+      dispatch(login(user));
       await AsyncStorage.setItem('token', user.token);
       await AsyncStorage.setItem('refreshToken', user.refreshToken);
     } catch (error) {

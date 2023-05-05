@@ -3,17 +3,41 @@ import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
 import {Container, IonIcon} from '../components';
 import {Box, Image, Text, View} from 'native-base';
 import {colors} from '../constans/colors';
-import {getUrlImageRandom} from '../helpers/getUrlImageRandom';
-import {useCounterProduct} from '../hooks';
+import {useCartStore, useCounterProduct} from '../hooks';
 import {useNavigation} from '@react-navigation/native';
 
 const dimensions = Dimensions.get('window');
 
 export const AgregarCarrito = () => {
-  const {decrement, increment, counter, total, unitaryPrice} =
-    useCounterProduct(1.34);
-  const uri = useMemo(() => getUrlImageRandom(), [unitaryPrice]);
+  const {productoSeleccionado, onAgregarAcarrito} = useCartStore();
   const navigation = useNavigation();
+  const {decrement, increment, counter, total, unitaryPrice} =
+    useCounterProduct(
+      productoSeleccionado?.enOferta!
+        ? productoSeleccionado.precioOferta
+        : productoSeleccionado?.precio!,
+    );
+
+  const uri = useMemo(
+    () => productoSeleccionado?.imagenes[0].urlImagenProducto,
+    [productoSeleccionado],
+  );
+
+  const handlerAgregarCarrito = () => {
+    onAgregarAcarrito({
+      id: 0,
+      idCompra: 0,
+      idProducto: productoSeleccionado?.id as number,
+      nombreProducto: productoSeleccionado?.nombreProducto!,
+      presentacion: productoSeleccionado?.presentacion!,
+      urlImage: uri!,
+      precioActual: unitaryPrice,
+      totalProducto: counter,
+      descuento: 0,
+      subTotal: total,
+    });
+    navigation.navigate('CarritoCompraScreen' as never);
+  };
 
   return (
     <Container topFather={0.2}>
@@ -30,9 +54,9 @@ export const AgregarCarrito = () => {
             alt={uri}
           />
           {/* detalle */}
-          <Text fontSize={'4xl'}>Nombre del artículo</Text>
+          <Text fontSize={'4xl'}> {productoSeleccionado?.nombreProducto}</Text>
           <Text fontSize={'md'} color={colors.grey2}>
-            Nombre tienda
+            {productoSeleccionado?.nombreTienda}
           </Text>
           <Text fontSize={'5xl'}> ${total.toFixed(2)} </Text>
           <Text fontSize={'md'} color={colors.grey2}>
@@ -48,8 +72,7 @@ export const AgregarCarrito = () => {
               Presentación
             </Text>
             <Text fontSize={'md'} color={colors.grey2}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut
-              efficitur sem, quis tincidunt nisi. Sed quis tincidunt mi
+              {productoSeleccionado?.presentacion}
             </Text>
           </View>
           {/* contador */}
@@ -85,9 +108,7 @@ export const AgregarCarrito = () => {
             <TouchableOpacity
               activeOpacity={0.6}
               style={styles.buttonAdd}
-              onPress={() =>
-                navigation.navigate('CarritoCompraScreen' as never)
-              }>
+              onPress={() => handlerAgregarCarrito()}>
               <Text fontSize={'xl'}>Agregar al carrito</Text>
               <IonIcon name="cart" />
             </TouchableOpacity>

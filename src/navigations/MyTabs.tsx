@@ -1,6 +1,6 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {CarritoCompraScreen, HomeScreen, PerfilScreen} from '../screens';
+import {CarritoCompraScreen, PerfilScreen} from '../screens';
 import {Platform} from 'react-native';
 import {IonIcon} from '../components';
 import {FavoriteTabs} from './FavoriteTabs';
@@ -8,7 +8,7 @@ import {colors} from '../constans/colors';
 import {AccountStack} from './AccountStack';
 import {useVerifyToken} from '../hooks';
 import {LoadingScreen} from '../screens/LoadingScreen';
-import {AgregarCarritoStack} from './AgregarCarritoStack';
+import {HomeStack} from './HomeStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -58,7 +58,7 @@ export const MyTabs = () => {
               tabBarIcon: ({color}) => <IonIcon name="home" color={color} />,
             }}
             name="HomeScreen"
-            component={HomeScreen}
+            component={HomeStack}
           />
           <Tab.Screen
             options={{
@@ -83,14 +83,6 @@ export const MyTabs = () => {
             }}
             name="PerfilScreen"
             component={PerfilScreen}
-          />
-          <Tab.Screen
-            options={{
-              tabBarLabel: 'listar',
-              tabBarIcon: ({color}) => <IonIcon name="reader" color={color} />,
-            }}
-            name="AgregarCarritoStack"
-            component={AgregarCarritoStack}
           />
         </>
       )}

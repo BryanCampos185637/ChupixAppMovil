@@ -13,7 +13,7 @@ export const PerfilScreen = () => {
     usePerfil(id);
 
   return (
-    <ScrollView flex={1} backgroundColor={colors.ligth}>
+    <ScrollView flex={1} backgroundColor={colors.light}>
       <Container topFather={0.2}>
         <Box style={styles.containerPerfilImage}>
           {/* foto de perfil */}

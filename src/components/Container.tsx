@@ -57,7 +57,7 @@ export const Container = ({
         {activateScroll ? (
           <ScrollView
             showsHorizontalScrollIndicator={false}
-            backgroundColor={colors.ligth}
+            backgroundColor={colors.light}
             borderTopRadius={'3xl'}
             style={[
               {...styles.subContainer, top: heigthScreen * topFather},
@@ -69,7 +69,7 @@ export const Container = ({
           </ScrollView>
         ) : (
           <Box
-            backgroundColor={colors.ligth}
+            backgroundColor={colors.light}
             borderTopRadius={'3xl'}
             style={[
               {...styles.subContainer, top: heigthScreen * topFather},

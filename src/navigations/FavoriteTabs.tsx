@@ -11,7 +11,7 @@ const Menu = () => {
     <Tab.Navigator
       screenOptions={{
         tabBarStyle: {
-          backgroundColor: colors.ligth,
+          backgroundColor: colors.light,
         },
         tabBarPressColor: colors.grey,
         tabBarActiveTintColor: colors.black,

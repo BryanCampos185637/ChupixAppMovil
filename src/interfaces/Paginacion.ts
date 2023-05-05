@@ -4,8 +4,8 @@ export interface PaginationResponse<T> {
   count: number;
   pageIndex: number;
   pageSize: number;
-  data: T[];
-  pageCount: number;
+  data: T;
+  pageCount: 10 | 20 | 26 | 50;
   search: string;
 }
 

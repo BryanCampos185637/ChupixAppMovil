@@ -4,9 +4,16 @@ import {Box, Image, Text} from 'native-base';
 import {colors} from '../constans/colors';
 import {StyleSheet} from 'react-native';
 import {IonIcon} from './IonIcon';
-import {getUrlImageRandom} from '../helpers/getUrlImageRandom';
+import {Compra} from '../interfaces/Compra';
+import {useCartStore} from '../hooks';
+interface Props {
+  compra: Compra;
+}
 
-export const CardCarritoCompra = () => {
+export const CardCarritoCompra = (model: Props) => {
+  const {compra} = model;
+  const {onEliminarDeCarrito} = useCartStore();
+
   return (
     <Box
       flexDirection={'row'}
@@ -16,29 +23,36 @@ export const CardCarritoCompra = () => {
       style={styles.container}
       padding={3}
       borderRadius={10}>
-      <TouchableOpacity style={styles.icon}>
+      <TouchableOpacity
+        style={styles.icon}
+        onPress={() => onEliminarDeCarrito(compra.idProducto)}>
         <IonIcon name="close" color={colors.black} />
       </TouchableOpacity>
       <Box flex={1} marginRight={5}>
         <Image
           borderRadius={10}
           source={{
-            uri: getUrlImageRandom(),
+            uri: compra.urlImage,
           }}
-          alt="Alternate Text"
+          alt={compra.nombreProducto}
           size="xl"
         />
       </Box>
-      <Box flex={2} >
+      <Box flex={2}>
         <Text color={colors.black} fontSize={'2xl'}>
-          Nombre artículo
+          {compra.nombreProducto}
         </Text>
         <Text color={colors.black} fontSize={'sm'}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry.
+          {compra.presentacion}
+        </Text>
+        <Text color={colors.black} fontSize={'sm'}>
+          Total: {compra.totalProducto}
+        </Text>
+        <Text color={colors.black} fontSize={'sm'}>
+          Precio: ${compra.precioActual.toFixed(2)}
         </Text>
         <Text fontSize={'xl'} fontWeight={'bold'}>
-          $18.00
+          SubTotal: ${compra.subTotal.toFixed(2)}
         </Text>
       </Box>
     </Box>
